@@ -73,5 +73,6 @@ void usart_send_string(USART_TypeDef* USARTx, char* textogod){
     }
 }
 uint8_t usart_receive_char(USART_TypeDef * USARTx){
-
+    while(!(USARTx->SR & USART_SR_RXNE));
+    return USARTx->DR;
 }
