@@ -13,7 +13,7 @@ void usart_init(USART_TypeDef * USARTx, uint32_t baudrate){
         GPIOA-> CRH &=~(0XF << ((10%8) * 4));
         GPIOA-> CRH |= (0X4 << ((10%8) * 4));
         //formula velocidad
-        float velocidad = (16 * baudrate) / 72000000;       //72MHz
+        float velocidad = 72000000/(16 * baudrate);       //72MHz
         int v_mantissa = velocidad;                         //me quedo con la parte entera del float
         int v_fraccion = (velocidad - v_mantissa) * 100;    //me quedo la parte fraccional
         //velocidad de comunicacion
@@ -33,7 +33,7 @@ void usart_init(USART_TypeDef * USARTx, uint32_t baudrate){
         GPIOA ->CRL&=~(0xF<<(3*4));
         GPIOA ->CRL|=(0x4<<(3*4));
         //formula velocidad
-        float velocidad = (16 * baudrate) / 36000000;       //36MHz
+        float velocidad = 36000000/(16 * baudrate);       //36MHz
         int v_mantissa = velocidad;
         int v_fraccion = (velocidad - v_mantissa) * 100;
         //velocidad de comunicacion
@@ -52,7 +52,7 @@ void usart_init(USART_TypeDef * USARTx, uint32_t baudrate){
         GPIOB-> CRH &=~(0XF << ((11%8) * 4));
         GPIOB-> CRH |= (0X4 << ((11%8) * 4));
         //formula velocidad
-        float velocidad = (16 * baudrate) / 36000000;       //36MHz
+        float velocidad = 36000000/(16 * baudrate);       //36MHz
         int v_mantissa = velocidad;
         int v_fraccion = (velocidad - v_mantissa) * 100;
         //velocidad de comunicacion
