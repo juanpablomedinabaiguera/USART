@@ -46,18 +46,18 @@ void usart_init(USART_TypeDef * USARTx, uint32_t baudrate){
         RCC -> APB2ENR |= RCC_APB1ENR_USART3EN | RCC_APB2ENR_IOPBEN;
         //configuro pines
         //TX
-        GPIOA-> CRH &=~(0XF << ((10%8) * 4));
-        GPIOA-> CRH |= (0xB << ((10%8) * 4));
+        GPIOB-> CRH &=~(0XF << ((10%8) * 4));
+        GPIOB-> CRH |= (0xB << ((10%8) * 4));
         //RX
-        GPIOA-> CRH &=~(0XF << ((11%8) * 4));
-        GPIOA-> CRH |= (0X4 << ((11%8) * 4));
+        GPIOB-> CRH &=~(0XF << ((11%8) * 4));
+        GPIOB-> CRH |= (0X4 << ((11%8) * 4));
         //formula velocidad
         float velocidad = (16 * baudrate) / 36000000;       //36MHz
         int v_mantissa = velocidad;
         int v_fraccion = (velocidad - v_mantissa) * 100;
         //velocidad de comunicacion
         USARTx -> BRR |= (v_mantissa << 4) | v_fraccion;
-        USART2->CR1 |= USART_CR1_UE;
+        USART3->CR1 |= USART_CR1_UE;
     }
 
     USARTx-> CR1 |= USART_CR1_TE | USART_CR1_RE;            //habilito transmicion y recepcion
